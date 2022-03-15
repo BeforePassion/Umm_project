@@ -45,13 +45,13 @@ class RecommendViewTestClass(TestCase):
 
     def test_recommend_view(self):
         # 만든 api가 제대로 routing 되었는지 확인
-        res = self.client.post("/api/recommend/")
+        res = self.client.post("/apis/recommend/")
 
         assert res.status_code == 200  # 200: 성공
 
     def test_wrong_view(self):
-        # 잘못된 api(url)로 연결할 경우
-        res = self.client.post("api/recommend/")
+        # 잘못된 apis(url)로 연결할 경우
+        res = self.client.post("apis/recommend/")
 
         assert res.status_code == 404  # 404: not found
 
