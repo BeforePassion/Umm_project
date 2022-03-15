@@ -23,5 +23,4 @@ api.add_router("recommend/", recommend_router)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', api.urls),
 ]
