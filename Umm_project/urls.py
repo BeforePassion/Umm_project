@@ -13,15 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 from ninja import NinjaAPI
 from recommend.views import router as recommend_router
+from credit.apis.v1.credit_router import router as credit_router
 
 api = NinjaAPI()
 api.add_router("recommend/", recommend_router)
+api.add_router("credit/", credit_router)
 
 urlpatterns = [
+    path('chat/', include('chat.urls')),
     path('admin/', admin.site.urls),
-    path('api/', api.urls),
+    path('apis/', api.urls),
 ]
+
