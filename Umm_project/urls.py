@@ -19,5 +19,4 @@ from ninja import NinjaAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', api.urls),
 ]
