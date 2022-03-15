@@ -37,7 +37,7 @@ class UserModel(AbstractUser):
         (Mentor, 'mentor'),
         (Mentee, 'mentee'),
     ]
-    user_type = models.CharField(max_length=8, choice=user_type_choices, default=Mentee)
+    user_type = models.CharField(max_length=8, choices=user_type_choices, default=Mentee)
     experience = models.CharField(max_length=8)
     email = models.EmailField(max_length=255, unique=True)
 
