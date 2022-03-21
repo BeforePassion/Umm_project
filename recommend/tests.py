@@ -9,11 +9,11 @@ class RecommendModelTestClass(TestCase):
     @classmethod
     def setUpTestData(cls):
         UserModel.objects.create(
-            email="test1@test.com",
             username="test1",
             password="test1",
             user_type="Mentor",
-            experience="3"
+            experience="3",
+            email="test1@test.com"
         )
         Lecture.objects.create(
             name="test_lecture"

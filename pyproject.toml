@@ -8,6 +8,8 @@ authors = ["Elijahrong <nhkim5760@gmail.com>"]
 python = "^3.9"
 Django = "4.0.2"
 django-ninja = "0.17.0"
+requests = "^2.27.1"
+beautifulsoup4 = "^4.10.0"
 
 [tool.poetry.dev-dependencies]
 
