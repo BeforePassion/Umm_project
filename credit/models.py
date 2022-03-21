@@ -10,7 +10,7 @@ class Credit(models.Model):
 
 
     mentoring_id = models.IntegerField(primary_key=True)
-    mentor_id = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    mentor = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     credit = models.IntegerField()
     credit_date = models.IntegerField()
     credit_use = models.IntegerField()
