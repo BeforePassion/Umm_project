@@ -12,7 +12,7 @@ class ChatroomModel(models.Model):
     mentee = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='mentee_id')
 
 
-class ChattingModel(models.Model):
+class MessageModel(models.Model):
     class Meta:
         db_table = "chattings"
 
