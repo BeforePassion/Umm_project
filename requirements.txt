@@ -71,3 +71,4 @@ Werkzeug==2.0.2
 wrapt==1.12.1
 yarl==1.7.2
 zipp==3.7.0
+channels==3.0.4
