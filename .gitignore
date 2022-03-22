@@ -251,3 +251,7 @@ package-lock.json
 
 # migration
 */migrations/*
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
