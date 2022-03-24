@@ -20,6 +20,7 @@ from ninja import NinjaAPI
 from recommend.views import router as recommend_router
 from credit.apis.v1.credit_router import router as credit_router
 from review.apis.v1.review_router import router as review_router
+from app import views
 
 api = NinjaAPI()
 api.add_router("recommend/", recommend_router)
@@ -30,5 +31,6 @@ urlpatterns = [
     path('chat/', include('chat.urls')),
     path('admin/', admin.site.urls),
     path('api/v1/', api.urls),
+    path('', views.index, name='index'),
 ]
 
