@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'channels',
     'chat',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     'recommend',
     'review',
     'user',
+    'six',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +133,15 @@ AUTH_USER_MODEL = 'user.UserModel'
 
 ASGI_APPLICATION = 'Umm_project.asgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = 'ummcustomservice@gmail.com'
+EMAIL_HOST_PASSWORD = 'dma2022!'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'ummcustomservice@gmail.com'
+
+
+AUTHENTICATION_BACKENDS = (
+    ('django.contrib.auth.backends.ModelBackend'),
+)
