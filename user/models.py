@@ -40,7 +40,7 @@ class UserModel(AbstractUser):
     user_type = models.CharField(max_length=8, choices=user_type_choices, default=Mentee)
     experience = models.CharField(max_length=8)
     email = models.EmailField(max_length=255, unique=True)
-
+    
     objects = UserProfileManager()
 
     USERNAME_FIELD = "email"
