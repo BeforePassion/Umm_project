@@ -255,3 +255,8 @@ package-lock.json
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+secrets/
+
+# beanstalk 우리 컴퓨터에 있는 파일을 올리는 게 아니라
+# git comit 된 기록을 올리는 것 (.gitignore도 반영이 됨)
