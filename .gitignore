@@ -252,4 +252,4 @@ package-lock.json
 # migration
 */migrations/*
 
-our_settings.py
+Umm_project/our_settings.py
