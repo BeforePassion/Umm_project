@@ -251,3 +251,5 @@ package-lock.json
 
 # migration
 */migrations/*
+
+our_settings.py

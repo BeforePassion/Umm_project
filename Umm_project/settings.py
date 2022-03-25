@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+from .our_settings import(
+    MY_DATABASE,
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -79,16 +83,7 @@ WSGI_APPLICATION = 'Umm_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sys',
-        'USER': 'admin',
-        'PASSWORD': 'admin123',
-        'HOST': 'umm-project.clsjddrfobqa.ap-northeast-2.rds.amazonaws.com',
-        'PORT': '3306',
-    }
-}
+DATABASES = MY_DATABASE
 
 
 # Password validation
