@@ -15,11 +15,12 @@ from django.utils.encoding import force_bytes  # , force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
+from django.http import JsonResponse
 
 
 def startpage(request):
     if request.method == 'GET':
-        return render(request, 'main/main.html')
+        return render(request, 'main.html')
 
 def sign_up_view(request):
     if request.method == 'GET':
@@ -95,8 +96,7 @@ def sign_in_view(request):
         exist_user = get_user_model().objects.filter(email=email)[0]
         if exist_user.is_deleted:
             return render(request, 'user/signin.html', {'error': '탈퇴한 계정입니다 ;( '})
-        me = auth.authenticate(request, email=email,
-                               password=password, username=username)
+        me = auth.authenticate(request, email=email, password=password, username=username)
         if me is not None:  
             auth.login(request, me)
             if me.invalid_user == True:

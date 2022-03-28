@@ -15,6 +15,7 @@
                 멘토링받기
             </div>
             <div class="flex flex-row gap-3">
+                <!-- 유저가 로그인되어 있으면 로그아웃이 나오게끔 -->
                 {% if user.is_authenticated %}
                 <div class="">
                     프로필
@@ -23,6 +24,7 @@
                     로그아웃
                 </div>
                 {% else %}
+                <!-- 로그아웃 상태인경우면 로그인 회원가입인 상태 -->
                 <div>
                     로그인
                 </div>
@@ -31,8 +33,6 @@
                 </div>
                 {% endif %}
             </div>
-            
         </div>
-      </div>
     </div>
-  </nav>
+</nav>
