@@ -13,7 +13,7 @@ def review_add(request: HttpRequest, review_request : request_review) -> set[str
     msg = review_add_service(request,review_request.satisfaction,review_request.interest,review_request.review_content)
     return msg
 
-@router.get("/inquire", response=response_CRUD)
+@router.post("/inquire")
 def review_inquire(request: HttpRequest, page : request_page) -> dict[str,Any]:
     msg = review_inquire_service(request,page)
     return msg

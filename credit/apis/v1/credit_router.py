@@ -8,7 +8,7 @@ from credit.services import credit_inquire_service,credit_charge_service,credit_
 router = Router()
 
 
-@router.get("/inquire", response=response_CRUD)
+@router.get("/inquire")
 def credit_inquire(request: HttpRequest) -> dict[str, int]:
     msg = credit_inquire_service(request)
     return msg
