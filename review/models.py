@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
@@ -10,7 +12,8 @@ class Review(models.Model):
         db_table = "reviews"
 
     review_id = models.IntegerField(primary_key=True)
-    metor = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     interest = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(3)])
-    satisfaction = models.IntegerField(validators=[MaxValueValidator(5)])
+    satisfaction = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     review_content = models.CharField(max_length=256, default='')
+    review_date = models.DateTimeField(default=datetime.now)

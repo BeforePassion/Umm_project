@@ -30,5 +30,8 @@ urlpatterns = [
     path('chat/', include('chat.urls')),
     path('admin/', admin.site.urls),
     path('api/v1/', api.urls),
+    path('credit/', include('credit.urls')),
+    path('review/', include('review.urls'))
+
 ]
 

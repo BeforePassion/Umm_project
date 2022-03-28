@@ -43,6 +43,14 @@ doc = ["mkdocs", "mkdocs-material", "markdown-include"]
 test = ["pytest", "pytest-cov", "pytest-django", "pytest-asyncio", "black", "isort", "flake8", "mypy (==0.930)", "django-stubs"]
 
 [[package]]
+name = "now"
+version = "0.0.6"
+description = "Record what you are doing SIMPLY from the command line"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pydantic"
 version = "1.9.0"
 description = "Data validation and settings management using python 3.6 type hinting"
@@ -84,7 +92,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "7938c8cc939e80f73e96ae6d53667e7d28f4d42047688956ae2339897e3236f1"
+content-hash = "9f70c7b3cc26f0cd3bd848c4bd999acf1ccd5d5c216155a3105139119cd42c5e"
 
 [metadata.files]
 asgiref = [
@@ -98,6 +106,9 @@ django = [
 django-ninja = [
     {file = "django-ninja-0.17.0.tar.gz", hash = "sha256:f6e80cbfd67de0c6fbf8fa2948f194a1ac375b67c43d6a79808d325abba94eb5"},
     {file = "django_ninja-0.17.0-py3-none-any.whl", hash = "sha256:31a5c040a36c620deb4c20731c094540e3245a7b885a7f9d28e85098886595fc"},
+]
+now = [
+    {file = "now-0.0.6.tar.gz", hash = "sha256:0bc9d56c03548d383c49eb53dcefaa65c11354dd87bc35992ca46436dc2aa642"},
 ]
 pydantic = [
     {file = "pydantic-1.9.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:cb23bcc093697cdea2708baae4f9ba0e972960a835af22560f6ae4e7e47d33f5"},

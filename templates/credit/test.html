@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% csrf_token %}
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            show_charge_history(1);
+            show_use_history(1);
+        });
+
+        function show_d1() {
+            $('#d1').show()
+            $('#d2').hide()
+            $('#d3').hide()
+            $('#d4').hide()
+        }
+
+        function show_d2() {
+            $('#d1').hide()
+            $('#d2').show()
+            $('#d3').hide()
+            $('#d4').hide()
+        }
+
+        function show_d3() {
+            $('#d1').hide()
+            $('#d2').hide()
+            $('#d3').show()
+            $('#d4').hide()
+        }
+
+        function show_d4() {
+            $('#d1').hide()
+            $('#d2').hide()
+            $('#d3').hide()
+            $('#d4').show()
+        }
+
+        function charge_point() {
+            // $.ajax({
+            //     type: post,
+            //     url: "/api/v1/credit/charge",
+            //     contentType: "application/json",
+            //     success: function (response) {
+            //         console.log(response)
+            //     }})
+            axios({
+                url: "/api/v1/credit/charge",
+                method: 'post'
+            })
+                .then(function (response) {
+                    console.log(response['data']['msg'])
+                })
+
+        }
+
+        function use_point() {
+            axios({
+                url: "/api/v1/credit/use",
+                method: 'post',
+                data: {'credit': 100}
+            })
+                .then(function (response) {
+                    console.log(response['data']['msg'])
+                })
+
+        }
+
+        function show_use_history(pageNum) {
+            axios({
+                url: "/api/v1/credit/use/history",
+                method: 'post',
+                data: {'page': 1}
+            })
+                .then(function (response) {
+                    use_data = response['data']['p']
+                    console.log(use_data)
+                    for (let i = 0; i < use_data.length; i++) {
+
+                        let credit = use_data[i]['credit']
+                        let date = use_data[i]['credit_date']
+                        let history = use_data[i]['credit_type']
+
+                        let temp_html = `<tr>
+                            <td>${date}</td>
+                            <td>${credit}</td>
+
+                            </tr>`
+
+                        $('#d3-3').append(temp_html);
+                    }
+                })
+
+        }
+
+        function show_charge_history(pageNum) {
+            axios({
+                url: "/api/v1/credit/charge/history",
+                method: 'post',
+                data: {'page': 1}
+            })
+                .then(function (response) {
+                    use_data = response['data']['p']
+                    ;
+                    let t_page = response['data']["t"];
+
+                    for (let i = 0; i < use_data.length; i++) {
+
+                        let credit = use_data[i]['credit']
+                        let date = use_data[i]['credit_date']
+
+                        let temp_html = `<tr>
+                            <td>${date}</td>
+                            <td>${credit}</td>
+
+                            </tr>`
+
+                        $('#d2-2').append(temp_html);
+                    }
+                    ;
+                    for (let j = 0; j < t_page['total_page']; j++) {
+                        let num = j + 1;
+                        if (num === pageNum) {
+                            let temp_html = ` <a style="color: red">${num}</a>`
+                            $('#pagination').append(temp_html);
+                        }
+                    }
+
+                })
+        }
+
+        // function show_charge_history(pageNum) {
+        //     $('#pagination').empty();
+        //     $('#d2-2').empty();
+        //     console.log('show_charge_history_실행')
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "/api/v1/credit/charge/history" + pageNum,
+        //         datatype: "JSON",
+        //         success: function (response) {
+        //             console.log("success");
+        //             console.log(response);
+        //             let p_data = response["p"];
+        //             let t_page = response["t"];
+        //             console.log("page", t_page['total_page'])
+        //             for (let i = 0; i < p_data.length; i++) {
+        //
+        //                 let credit = p_data[i]['credit']
+        //                 let date = p_data[i]['created_at']
+        //                 let history = p_data[i]['history']
+        //
+        //                 let temp_html = `<tr>
+        //                     <td>${date}</td>
+        //                     <td>${credit}</td>
+        //                     <td>${history}</td>
+        //                     </tr>`
+        //
+        //                 $('#d2-2').append(temp_html);
+        //             }
+        //             ;
+        //             for (let j = 0; j < t_page['total_page']; j++) {
+        //                 let num = j + 1;
+        //                 if (num === pageNum) {
+        //                     let temp_html = ` <a style="color: red">${num}</a>`
+        //                     $('#pagination').append(temp_html);
+        //
+        //                 } else {
+        //                     let temp_html = ` <a href="javascript:show_charge_history(${num})">${num}</a>`
+        //                     $('#pagination').append(temp_html);
+        //                 }
+        //             }
+        //         },
+        //         error: function () {
+        //             alert("안돼, 돌아가.");
+        //         }
+        //     })
+        // };
+
+
+    </script>
+</head>
+<body>
+<div class="main-container">
+    <div class="menu-container">
+        <button onclick="show_d1()">충전하기</button>
+        <button onclick="show_d2()">충전내역</button>
+        <button onclick="show_d3()">사용내역</button>
+        <button onclick="show_d4()">포인트 안내</button>
+
+    </div>
+
+    <div class="menu">
+        <div class="box" id="d1">
+            <p id="my_point">현재 내 포인트: </p>
+            <form action="/api/v1/credit/charge" method="post" id="point">
+                {% csrf_token %}
+                <div>
+                    <input id="test" name="test" value="100">
+                    <label for="test">test</label>
+                </div>
+                <div>
+                    <input type="radio" id="100" name="point" value="100">
+                    <label for="100">100 point</label>
+                </div>
+                <div>
+                    <input type="radio" id="500" name="point" value="500">
+                    <label for="500">500 point</label>
+                </div>
+                <div>
+                    <input type="radio" id="1000" name="point" value="1000">
+                    <label for="1000">1000 point</label>
+                </div>
+                <div>
+                    <input type="radio" id="5000" name="point" value="5000">
+                    <label for="5000">5000 point</label>
+                </div>
+            </form>
+            <button id="submit" type="submit" form="point">충전하기</button>
+            <a id="a" onclick="charge_point()">charge</a>
+            <a id="b" onclick="use_point()">use</a>
+        </div>
+        <div class="box" id="d2" style="display: none">
+            <p>충전 내역</p>
+            <table id="d2-2" style="margin: auto">
+                <tr>
+                    <td>date</td>
+                    <td>point</td>
+                    <td>내용</td>
+                </tr>
+            </table>
+            <ul id="pagination"></ul>
+        </div>
+        <div class="box" id="d3" style="display: none">
+            <p>사용내역</p>
+            <table id="d3-3" style="margin: auto">
+                <tr>
+                    <td>date</td>
+                    <td>point</td>
+                    <td>내용</td>
+                </tr>
+            </table>
+        </div>
+        <div class="box" id="d4" style="display: none">포인트안내 텍스트</div>
+
+    </div>
+</div>
+<script>
+
+</script>
+
+</body>
+</html>
