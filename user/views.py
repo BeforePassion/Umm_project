@@ -19,7 +19,7 @@ from .tokens import account_activation_token
 
 def startpage(request):
     if request.method == 'GET':
-        return render(request, 'templates/main.html')
+        return render(request, 'main/main.html')
 
 def sign_up_view(request):
     if request.method == 'GET':
