@@ -9,7 +9,7 @@ var $html = $("html");
 var page = 1; 
 var lastPage = $(".content").length;
 
-$html.animate({scrollTop:0},10);
+$html.animate({scrollTop:0},500);
 
 // 윈도우의 휠의 기능을 사용할 때 
 $(window).on("wheel", function(e){
@@ -22,12 +22,11 @@ $(window).on("wheel", function(e){
         page++;
     }else if(e.originalEvent.deltaY < 0){
         if(page == 1) return;
-
         page--;
     }
     var posTop = (page-1) * $(window).height();
 
-    $html.animate({scrollTop : posTop});
+    $html.animate({scrollTop : posTop},500);
 
 });
 
