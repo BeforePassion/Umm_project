@@ -6,24 +6,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'style/styles.css' %}">
     <link rel="icon" href='../static/img/favicon.ico'>
-    <link rel="stylesheet" href="{% static 'css/like.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
       {% block css %}{% endblock css %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>
-      {% block page_title %}{% endblock page_title %}| Bondar</title>
+      {% block page_title %}{% endblock page_title %}| UMM</title>
   </head>
 
   <body>
     {% include "components/header.html" %}
-    {% include "components/side_nav.html" %}
     <div class="ml-72 mt-16">
-      {% block content %}{% endblock %}
+      {%block content %}{% endblock content %}
     </div>
   </body>
-  <script src="{% static 'js/profile.js' %}"></script>
-
 </html>
 
