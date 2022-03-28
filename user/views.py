@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.urls import reverse
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes  # , force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
@@ -19,7 +19,7 @@ from .tokens import account_activation_token
 
 def startpage(request):
     if request.method == 'GET':
-        return render(request, 'user/intro.html')
+        return render(request, 'templates/main.html')
 
 def sign_up_view(request):
     if request.method == 'GET':
@@ -76,23 +76,6 @@ def sign_up_view(request):
                 )
 
 
-                # uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-                # domain = get_current_site(request).domain
-                # link= reverse('activate', kwargs={'uidb64':uidb64, 'token':token_generator.make_token(user)})
-
-                # activate_url = 'https://'+domain+link
-
-                # email_subject = 'umm 계정을 인증하세요:)'
-                # email_body = '안녕하세요 '+user.username+':)' +' 이 링크를 통하여 계정을 인증하세요!\n'+activate_url
-                # email = EmailMessage(
-                #     email_subject,
-                #     email_body,
-                #     'noreply@dev-umm.com',
-                #     [email],
-                # )
-                # email.send()
-
-
 def sign_in_view(request):
     if request.method == 'GET':
         user = request.user.is_authenticated
@@ -101,6 +84,7 @@ def sign_in_view(request):
             if request.user.invalid_user == True: 
                 return redirect('/main')
             elif request.user.invalid_user == False:
+                messages.warning(request, "이메일 인증을 완료해주세요 ;)")
                 return redirect('/register')
         else:
             return render(request, 'user/signin.html')
