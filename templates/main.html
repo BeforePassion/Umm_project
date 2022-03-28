@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '../static/css/main.css' %}">
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+
+{% block page_title %}{% endblock %}
 
 
 {% block content %}
@@ -11,9 +22,9 @@
     </div>
 </div>
 <div class="bg-orange-300" id="section"><h1>2</h1></div>
+<div class="bg-orange-500" id="section"><h1>3</h1></div>
 <div class="bg-orange-700" id="section"><h1>4</h1></div>
-<div class="bg-orange-500" id="section"><h1>3</h1></div>
-<div class="bg-orange-500" id="section"><h1>3</h1></div>
+<div class="bg-orange-900" id="section"><h1>5</h1></div>
 
 
 
