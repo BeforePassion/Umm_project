@@ -13,11 +13,13 @@
 
     {# custom css & js #}
     <link rel="icon" href='../static/img/favicon.ico'>
-    <link rel="stylesheet" href="{% static '../static/css/main.css' %}">
+    
+    {% block css %}{% endblock %}
+    
+    {% block js %}{% endblock %}
+    
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <script src="{% static 'js/modal.js' %}"></script>
-    <title>
-      {% block page_title %}{% endblock page_title %} | UMM</title>
+    <title>{% block page_title %}{% endblock page_title %} | UMM</title>
   </head>
 
   <body>
