@@ -11,6 +11,13 @@ django-ninja = "0.17.0"
 requests = "^2.27.1"
 beautifulsoup4 = "^4.10.0"
 
+six = "^1.16.0"
+node = "^1.0"
+
+PyMySQL = "1.0.2"
+types-PyMySQL = "1.0.6"
+
+
 [tool.poetry.dev-dependencies]
 
 [build-system]
