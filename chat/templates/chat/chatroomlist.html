@@ -1,0 +1,21 @@
+{% block js %}
+<script>
+    function goChat(e){
+        me = '{{ user.username }}'
+        username1 = e.innerHTML.split(",")[0].trim();
+        username2 = e.innerHTML.split(",")[1].trim();
+        if (me != username1){
+            window.location.href = `/chatting_room/${username1}`
+        }
+        if (me != username2){
+            window.location.href = `/chatting_room/${username2}`
+        }
+    }
+</script>
+{% endblock %}
+
+{% for room in rooms %}
+<div class="flex flex-col w-32">
+    <div onclick="goChat(this)" class="p-5 m-3 cursor-pointer bg-yellow-300">{{ room }}</div>
+</div>
+{% endfor %}

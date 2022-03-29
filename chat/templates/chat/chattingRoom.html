@@ -1,0 +1,87 @@
+{% block js %}
+<script src={% static 'js/socket.js' %}></script>
+<script>
+    const me = '{{ user.username }}'
+    const roomId = '{{ room.id }}'
+    const url = '{{ request.path }}'
+
+    socket.on("sendMessage", ({ message, user }) => {
+        let html = ''
+        if (me == user){
+            html = `<div class="mb-10 self-end text-right">
+                        <span class="text-sm font-medium text-gray-600">${user}</span>
+                        <div class="mt-px p-5 w-56 rounded bg-gray-300">
+                            ${message}
+                        </div>
+                        </div>`;
+        }else{
+            html = `<div class="mb-10">
+                        <span class="text-sm font-medium text-gray-600">${user}</span>
+                        <div class="mt-px p-5 w-56 rounded bg-teal-500 text-white">
+                            ${message}
+                        </div>
+                        </div>`;
+        }
+        if (messageBox.innerHTML.trim() == "메세지가 없습니다") {
+            messageBox.innerHTML = html;
+        } else {
+            messageBox.innerHTML += html;
+        }
+        input.value = "";
+    });
+    
+    socket.emit('join', roomId)
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let data = new FormData()
+
+        data.append('message',input.value)
+        data.append('chat_room_id',roomId)
+
+        axios({
+            method:'POST',
+            url:url,
+            data:data,
+            headers: {
+                "X-CSRFToken": '{{csrf_token}}', 
+            }
+        }).then(res => {
+            socket.emit('sendMessage',{'message':input.value,'roomId':roomId,'user':me})
+        })
+        .catch(errors => console.log(errors)) 
+    })
+</script>
+{% endblock %}
+
+{% block content %}
+<form id="form">
+    <input type="text" id="input" placeholder="메시지를 입력하세요">
+    <button class="p-5 m-3 cursor-pointer">전송</button>
+</form>
+<div id="messageBox">
+    {% if room.messages.count == 0 %}
+        메세지가 없습니다
+    {% else %}
+        {% for message in room.messages.all  %}
+            <div class="mb-10 {% if message.user.username == user.username %}
+                self-end
+                text-right
+            {% endif %}">
+                <span class="text-sm font-medium text-gray-600">{{message.user.username}}</span>
+                <div class="mt-px p-5 w-56 rounded
+                    {% if message.user.username != user.username %}
+                        bg-teal-500
+                        text-white
+                    {% else %}
+                        bg-gray-300
+                    {% endif %}
+                ">
+                    {{message.message}}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+
+{% endblock %}
