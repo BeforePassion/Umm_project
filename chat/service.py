@@ -1,5 +1,5 @@
 from user.models import UserModel
-
+from chat.views import *
 from .models import ChatRoom, Message
 
 
