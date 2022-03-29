@@ -31,68 +31,25 @@ html, body{width: 100%; height: 100%;}
 	text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* #section:nth-child(even){background-color: #333;} */
-
-.button {
-    position: relative;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    width: 300px;
-    height: 80px;
-    border-radius: 50px;
-    outline: none;
-    background: linear-gradient(90deg, #ec37d0, #d92b2b, #ffaa0d, #ec37d0);
-    background-size: 400%;
-    color: #fff;
-    font-size: 24px;
-    letter-spacing: 4px;
+.card-group{
+	display: flex;
+    flex-flow: row wrap;
+    flex-wrap: wrap;
+    flex-direction: column;
+	position: relative;
+	width: 100%;
+	height: 330px;
+    top: 30%;
+	margin: 10px;
 }
-.button {
-    position: relative;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    -webkit-tap-highlight-color:rgba(0,0,0,0);
-    width: 300px;
-    height: 80px;
-    border-radius: 50px;
-    outline: none;
-    background: linear-gradient(90deg, #ec37d0, #d92b2b, #ffaa0d, #ec37d0);
-    background-size: 400%;
-    color: #fff;
-    font-size: 24px;
-    letter-spacing: 4px;
-  }
-  .button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    background: linear-gradient(90deg, #ec37d0, #d92b2b, #ffaa0d, #ec37d0);
-    background-size: 400%;
-    border-radius: 50px;
-    opacity: 0;
-    transition: .5s;
-  }
-  .button:hover {
-    animation: animate 10s linear infinite;
-  }
-  .button:hover::before {
-    filter: blur(30px);
-    opacity: .8;
-    animation: animate 10s linear infinite;
-  }
-  @keyframes animate {
-    0% {
-      background-position: 0%;
-    }
-    100% {
-      background-position: 400%;
-    }
-  }
-  
+
+.card-group .card{
+	width: 14rem;
+	height: 100%;
+	margin: 3px;
+}
+
+.card-group .card img{
+	width: 100%;
+	height: 50%;
+}
