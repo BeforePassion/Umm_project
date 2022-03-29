@@ -85,10 +85,6 @@
                 <div>
                     멘토링받기
                 </div>
-
-                <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"
-                data-backdrop="false">로그인</button>
-
                 <div class="flex flex-row gap-3">
                     <!-- 유저가 로그인되어 있으면 로그아웃이 나오게끔 -->
                     {% if user.is_authenticated %}
@@ -98,14 +94,8 @@
                     <div class="">
                         로그아웃
                     </div>
-                    {% comment %} {% else %}
-                    <a href="/sign-in">
-                        <button
-                            class="w-[130px] h-[50px] rounded-[15px] bg-white border-none float-right mt-[20px] mr-[30px]">로그인</button>
-                    </a>
-                    <div class="">
-                        회원가입
-                    </div> {% endcomment %}
+                    {% else %}
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#myModal" data-backdrop="false">로그인</button>
                     {% endif %}
                 </div>
             </div>

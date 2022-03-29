@@ -1,0 +1,42 @@
+{% extends "base.html"%}
+{% load static %}
+{% block page_title %}Sign-in{% endblock page_title %}
+{% block content %}
+  <div class="h-screen">
+    <div class="wrapper">
+      <div class="login-content w-[70%]">
+        <div class="form-content">
+          <div>
+            <img src="/static/img/logo.png" alt="" width="80" height="80" class="d-inline-block align-text-top">
+          </div>
+          <h3>UMM... 로그인을 해볼까나 🧐</h3>
+          </h4>
+          <div class="form-data">
+            <form method="post" action='/sign-in/'>
+              {% csrf_token %}
+              <div class="form-floating mb-3 input">
+                <label for="floatingInput">email</label>
+                <input type="email" class="form-control auth-input" id="email" name="email" placeholder="이메일"/>
+              </div>
+              <div class="form-floating mb-3 input">
+                <label for="floatingInput">비밀번호</label>
+                <input type="password" class="form-control auth-input" id="password" name="password" placeholder="비밀번호"/>
+              </div>
+              <div class = "error-message">{{ error }}</div>
+              <div class="btn-wrapper">
+                <button class="btn-signup" style="padding:10px 15px 10px 15px;">로그인</button>
+              </div>
+            </form>
+          </div>
+          <div class="second-form-content d-flex flex-column justify-content-end">
+            <div class="join">
+              <div style="margin:20px 5px 15px 0; font-size:20px">UMM에서 개발자로서의 꿈을 펼쳐보실래요? 🤗<br>
+                <a href="/sign-up" class="sign-up-font" style="color:#FF4F59; font-size:17px">함께 꿈을 펼칠래요 😆</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
