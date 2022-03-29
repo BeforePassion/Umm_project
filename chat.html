@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Socket Tester</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+
+        <!-- 대기실 -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    대기실
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="m" autocomplete="off" />
+                            <div class="input-group-append">
+                                <button id="msg-send" class="btn btn-primary" placeholder="message">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <ul id="messages"></ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 방선택 -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    방선택
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-1">
+                        <select id="select-room" class="form-control">
+                            <option value="none" selected="selected">방을 선택해주세요</option>
+                            <!-- 수동으로 만들어진 채팅 방 -->
+                            <option value="test-room">테스트 방</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button id="select-room-button" class="btn btn-success"
+                                placeholder="message">Select</button>
+                        </div>
+                    </div>
+                    <form action="">
+                        <div class="input-group mb-1">
+                            <input type="text" class="form-control" id="room-message" autocomplete="off" />
+                            <div class="input-group-append">
+                                <button id="room-msg-send" class="btn btn-primary" placeholder="message">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <ul id="room-messages"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(() => {
+            /** Socket Starts **/
+            const socket = io();
+
+            // 클라이언트에서 reuqest_message 프로토콜로 id='m' 의 input 값을 보낸다.
+            $('#msg-send').click(() => {
+                socket.emit('request_message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+
+            $('#select-room-button').click(() => {
+                let roomName = $('#select-room').val();
+                if (roomName === "none")
+                    return alert("방을 선택해주세요.");
+                socket.emit('req_join_room', roomName)
+            });
+
+            $('#room-msg-send').click(() => {
+                socket.emit('req_room_message', $('#room-message').val());
+                $('#room-message').val('');
+                return false;
+            });
+
+            socket.on('response_message', (res) => {
+                $('#messages').prepend($('<li>').text(res));
+            });
+
+            socket.on('noti_join_room', (res) => {
+                $('#room-messages').prepend($('<li>').text(res));
+            });
+
+            socket.on('noti_room_message', (res) => {
+                $('#room-messages').prepend($('<li>').text(res));
+            });
+
+        });
+    </script>
+</body>
+
+</html>
