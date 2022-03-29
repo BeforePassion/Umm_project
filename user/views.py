@@ -86,7 +86,7 @@ def sign_in_view(request):
                 return redirect('/main')
             elif request.user.invalid_user == False:
                 messages.warning(request, "이메일 인증을 완료해주세요 ;)")
-                return redirect('/register')
+                return redirect('/sign-in')
         else:
             return render(request, 'user/signin.html')
     elif request.method == 'POST':
@@ -102,7 +102,7 @@ def sign_in_view(request):
             if me.invalid_user == True:
                 return redirect('/main')
             else:
-                return redirect('/register')
+                return redirect('/sign-in')
         else:
             return render(request, 'user/signin.html', {'error': '회원정보가 일치하지 않습니다 ;( '})
 

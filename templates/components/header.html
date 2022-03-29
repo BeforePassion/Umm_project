@@ -1,37 +1,37 @@
 <nav class="w-full fixed top-0 left-0 z-10 mainColor" style="z-index: 1;" >
-    <div class="max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex items-center justify-between h-16 flex-row-reverse">
-        <div class="absolute inset-y-0 left-0 flex items-center">
-        <img src="/static/img/logo.png" alt="" width="80" height="80" class="d-inline-block align-text-top">
-        </div>
-        <div class="flex flex-row gap-10">
-            <div>
-                home
+    <div class="max-w-12xl min-w-8xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex items-center justify-between h-16 flex-row">
+            <div class="inset-y-0 left-0 flex items-center w-[70px] h-[70px]">
+                <img src="/static/img/logo.png" alt="" class="d-inline-block align-text-top mt-1">
             </div>
-            <div>
-                멘토/멘티찾기
-            </div>
-            <div>
-                멘토링받기
-            </div>
-            <div class="flex flex-row gap-3">
-                <!-- 유저가 로그인되어 있으면 로그아웃이 나오게끔 -->
-                {% if user.is_authenticated %}
-                <div class="">
-                    프로필
-                </div>
-                <div class="">
-                    로그아웃
-                </div>
-                {% else %}
-                <!-- 로그아웃 상태인경우면 로그인 회원가입인 상태 -->
+            <div class="flex flex-row gap-8">
                 <div>
-                    로그인
+                    home
                 </div>
                 <div>
-                    회원가입
+                    멘토/멘티찾기
                 </div>
-                {% endif %}
+                <div>
+                    멘토링받기
+                </div>
+                <div class="flex flex-row gap-3">
+                    <!-- 유저가 로그인되어 있으면 로그아웃이 나오게끔 -->
+                    {% if user.is_authenticated %}
+                    <div class="">
+                        프로필
+                    </div>
+                    <div class="">
+                        로그아웃
+                    </div>
+                    {% comment %} {% else %}
+                    <a href="/sign-in">
+                        <button class="w-[130px] h-[50px] rounded-[15px] bg-white border-none float-right mt-[20px] mr-[30px]">로그인</button>
+                    </a>
+                    <div class="">
+                        회원가입
+                    </div> {% endcomment %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
