@@ -32,3 +32,7 @@
 .modal-tour .modal-dialog {
   width: 380px;
 }
+
+.modal-body .btn-primary {
+  color: #0d6efd;
+}
