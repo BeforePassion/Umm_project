@@ -1,6 +1,15 @@
-html{overflow: hidden;}
+* {
+	font-family: "Gowun Dodum", sans-serif;
+}
+
+
+html{
+	overflow: hidden;
+}
 
 html, body{width: 100%; height: 100%;}
+
+
 
 /* #section-wrapper{
 	position: relative;
@@ -12,7 +21,7 @@ html, body{width: 100%; height: 100%;}
 	position: relative;
 }
 
-#section > h1{
+#section div > h1{
 	position: absolute;
 	top: 50%; left: 50%;
 	transform: translate(-50%,-50%);
@@ -23,3 +32,67 @@ html, body{width: 100%; height: 100%;}
 }
 
 /* #section:nth-child(even){background-color: #333;} */
+
+.button {
+    position: relative;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 300px;
+    height: 80px;
+    border-radius: 50px;
+    outline: none;
+    background: linear-gradient(90deg, #ec37d0, #d92b2b, #ffaa0d, #ec37d0);
+    background-size: 400%;
+    color: #fff;
+    font-size: 24px;
+    letter-spacing: 4px;
+}
+.button {
+    position: relative;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    width: 300px;
+    height: 80px;
+    border-radius: 50px;
+    outline: none;
+    background: linear-gradient(90deg, #ec37d0, #d92b2b, #ffaa0d, #ec37d0);
+    background-size: 400%;
+    color: #fff;
+    font-size: 24px;
+    letter-spacing: 4px;
+  }
+  .button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, #ec37d0, #d92b2b, #ffaa0d, #ec37d0);
+    background-size: 400%;
+    border-radius: 50px;
+    opacity: 0;
+    transition: .5s;
+  }
+  .button:hover {
+    animation: animate 10s linear infinite;
+  }
+  .button:hover::before {
+    filter: blur(30px);
+    opacity: .8;
+    animation: animate 10s linear infinite;
+  }
+  @keyframes animate {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 400%;
+    }
+  }
+  
