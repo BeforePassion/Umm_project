@@ -3,8 +3,7 @@
 <head>
     {% csrf_token %}
     <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <script>
         $(document).ready(function () {
 
@@ -16,29 +15,21 @@
             $('#d1').show()
             $('#d2').hide()
             $('#d3').hide()
-            $('#d4').hide()
         }
 
         function show_d2() {
             $('#d1').hide()
             $('#d2').show()
             $('#d3').hide()
-            $('#d4').hide()
         }
 
         function show_d3() {
             $('#d1').hide()
             $('#d2').hide()
             $('#d3').show()
-            $('#d4').hide()
         }
 
-        function show_d4() {
-            $('#d1').hide()
-            $('#d2').hide()
-            $('#d3').hide()
-            $('#d4').show()
-        }
+
 
         function charge_point() {
             // $.ajax({
@@ -189,7 +180,7 @@
         <button onclick="show_d1()">충전하기</button>
         <button onclick="show_d2()">충전내역</button>
         <button onclick="show_d3()">사용내역</button>
-        <button onclick="show_d4()">포인트 안내</button>
+
 
     </div>
 
@@ -244,7 +235,7 @@
                 </tr>
             </table>
         </div>
-        <div class="box" id="d4" style="display: none">포인트안내 텍스트</div>
+
 
     </div>
 </div>

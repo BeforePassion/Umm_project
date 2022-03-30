@@ -1,0 +1,116 @@
+.all{
+    background: url('/static/img/money.jpg') no-repeat center center/cover, rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-content: space-between;
+}
+
+.main-container{
+    width: 50%;
+    margin : 8vw auto auto auto;
+}
+
+.menu-container{
+    display: flex;
+    justify-content: space-around;
+    width : 65%;
+    margin : auto;
+    margin-top: 10px;
+    font-size : xx-large;
+}
+
+.box{
+    font-size : large;
+
+}
+#profile_img{
+    margin: auto;
+    width: 10vw;
+    height: 7.5vw;
+    border-radius: 70%;
+    overflow: hidden;
+    margin-top: 1vw;
+    margin-bottom: 30px;
+}
+#my_credit{
+    font-size: x-large;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#line{
+    width: 65%;
+    height: 2px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    background-color: black;
+}
+
+#coin{
+    width: 35px;
+    margin-left: 5px;
+}
+
+#d1{
+    display: flex;
+}
+
+#d2-2{
+    width: 100%;
+}
+
+#d3-3{
+    width: 100%;
+}
+
+#charge{
+    display: flex;
+    justify-content: space-around;
+}
+
+#use{
+    display: flex;
+    justify-content: space-around;
+}
+
+.box_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.sub_title{
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 10px;
+}
+
+.content_tile{
+    font-size: 20px;
+}
+
+.temp{
+    display: flex;
+    justify-content:space-around;
+    margin-right: 5vw;
+}
+
+.pagination{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#body{
+    margin-top: 8vw;
+    line-height: 1.5;
+    box-sizing: border-box;
+    border: 1px solid #d6dde7;
+    border-radius: 10px;
+    background-color: #EA9A56;
+}
+

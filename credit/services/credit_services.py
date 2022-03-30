@@ -5,7 +5,9 @@ from credit.models import Credit
 from user.models import UserModel
 from django.db.models import Sum
 from review.models import Review
+from pytz import timezone
 import re
+
 
 def credit_inquire_service(request) -> dict[str, int]:
     credit = request.user.credit
@@ -13,6 +15,7 @@ def credit_inquire_service(request) -> dict[str, int]:
     return msg
 
 def credit_charge_service(request) -> dict[str]:
+    now = datetime.now(timezone('Asia/Seoul'))
     id = request.user.id
     credit = (Review.objects.filter(user_id=id).order_by("-review_date")[0].satisfaction)*100
     c = request.user.credit
@@ -35,24 +38,26 @@ def credit_charge_service(request) -> dict[str]:
     # 한 주간 얻을 수 있는 크레딧
     excess_credit = week_credit - week_limit_credit
     if week_credit <= week_limit_credit:
-        Credit.objects.create(mentor_id=request.user.id,credit=int(credit), credit_type=True)
+        Credit.objects.create(mentor_id=request.user.id,credit=int(credit), credit_type=True, credit_date=now.strftime('%Y-%m-%d %H:%M:%S'))
         UserModel.objects.filter(id=request.user.id).update(credit=c + int(credit))
         credit_value = UserModel.objects.get(id=request.user.id).credit
-        msg: dict[str] = {"msg": f"크레딧 증정이 완료되었습니다. 현재 크레딧 금액{credit_value}"}
+        msg: dict[str] = {"msg": f"크레딧 증정이 완료되었습니다. \n현재 크레딧 금액{credit_value}"}
     else:
-        msg: dict[str] = {"msg": f"주간 충전 크레딧 한도를 {excess_credit}만큼 초과합니다. 현재 주간 충전 크레딧 한도는 {week_limit_credit}입니다."}
+        msg: dict[str] = {"msg": f"주간 충전 크레딧 한도를 {excess_credit}만큼 초과합니다.\n현재 주간 충전 크레딧 한도는 {week_limit_credit}입니다."}
     return msg
 
 def credit_use_service(request, credit: int) -> dict[str]:
+    now = datetime.now(timezone('Asia/Seoul'))
     c = request.user.credit
 
     if credit > c:
         msg: dict[str] = {"msg": f"현재 잔액{c}보다 사용하려는 금액이 {credit}만큼 큽니다."}
     else:
         UserModel.objects.filter(id=request.user.id).update(credit=c - int(credit))
-        Credit.objects.create(mentor_id=request.user.id, credit=int(credit), credit_type=False)
+        Credit.objects.create(mentor_id=request.user.id, credit=int(credit), credit_type=False,
+        credit_date=now.strftime('%Y-%m-%d %H:%M:%S'))
         credit_value = UserModel.objects.get(id=request.user.id).credit
-        msg: dict[str] = {"msg": f"크레딧이 정상적으로 사용되었습니다. 현재 크레딧 금액{credit_value}"}
+        msg: dict[str] = {"msg": f"크레딧이 정상적으로 사용되었습니다. \n현재 크레딧 금액 {credit_value}"}
     return msg
 
 def charge_history_service(request, page: int) -> dict[str,Any] :
