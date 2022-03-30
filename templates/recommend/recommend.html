@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{#타이틀 넣는 곳#}
+{% block title %}
+    Sign In
+{% endblock %}
+
+{# css 파일 넣는 곳#}
+{% block css %}
+<!--    <link rel="stylesheet" href="{% static '/css/asdf.css' %}">-->
+.img-box{
+
+}
+{% endblock %}
+
+{#자바스크립트 파일 넣는 곳#}
+{% block js %}
+
+{% endblock %}
+
+{# 메인 컨텐츠 들어가는 곳 #}
+{% block content %}
+    <div class="wrapper-content">
+        <div class="container-content">
+            <div class="card-content">
+                <div class="img-box">
+                    <img src="{{course_list.img1}}">
+                </div>
+                <div class="title-box">
+                    title1
+                </div>
+                <a href="{{course_list.link1}}"></a>
+            </div>
+            <div class="card-content">
+                <div class="img-box">
+                    <img src="{{course_list.img1}}">
+                </div>
+                <div class="title-box">
+                    title2
+                </div>
+                <a href="{{course_list.link1}}"></a>
+            </div>
+            <div class="card-content">
+                <div class="img-box">
+                    <img src="{{course_list.img1}}">
+                </div>
+                <div class="title-box">
+                    title3
+                </div>
+                <a href="{{course_list.link1}}"></a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

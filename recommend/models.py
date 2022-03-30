@@ -8,7 +8,11 @@ from user.models import UserModel
 class Lecture(models.Model):
     class Meta:
         db_table = "lectures"
-    name = models.CharField(max_length=40)
+
+    img = models.CharField(max_length=60)
+    title = models.CharField(max_length=80)
+    url = models.CharField(max_length=80)
+    type = models.CharField(max_length=60)
 
 
 class Recommend(models.Model):
