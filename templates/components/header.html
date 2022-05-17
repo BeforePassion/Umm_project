@@ -1,3 +1,24 @@
+<!-- 모달 ajax -->
+<script>
+    $('#myModal_signup').click(function(){
+        $.ajax({
+            type: 'POST',
+            url: '/',
+            data: {
+                "email": $('#email').val(),
+                "password": $('#password').val(),
+                "password2": $('#password2').val(),
+                success: function(){
+                    alert('회원가입 성공');
+                    location.reload();
+                }, error: function(){
+                    alert('회원가입 실패');
+                }
+            }
+        })
+    });
+</script>
+
 <!-- 모달 창 -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -22,28 +43,83 @@
             d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
     </symbol>
 </svg>
-<div class="modal modal-signin bg-transparent py-5" role="dialog" id="myModal">
+<!-- 로그인 모달창 시작 -->
+<div class="modal modal-signin bg-transparent py-5" role="dialog" id="myModal_signin">
     <div class="modal-dialog" role="document">
         <div class="modal-content rounded-5 shadow">
-            <div class="modal-header p-5 pb-4 border-bottom-0">
-                <!-- <h5 class="modal-title">Modal title</h5> -->
-                <h2 class="fw-bold mb-0">Sign up for free</h2>
+            <div class="modal-header p-4 pb-4 border-bottom-0 flex flex-col">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
+                    <p class="font-bold text-[30px]">UMM...🤔</p>
+                    <p class="mt-2">얼른 로그인 안하고 뭐해요!</p>
+                    <p class="text-[13px]">그대... 로그인정보 잊지 않았죠?</p>
             </div>
             <div class="modal-body p-5 pt-0">
-                <form class="">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control rounded-4" id="floatingInput"
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control rounded-4" id="floatingPassword"
+                        placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class = "error-message">{{ error }}</div>
+                <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign in</button>
+                <small class="mt-2 text-xs flex justify-center text-center">로그인하시면,<br> UMM의 이용약관에 동의하는 것으로 간주합니다 :) </small>
+                <hr class="my-4">
+                <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
+                <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4 flex flex-col items-center" type="submit">
+                    <svg class="bi me-1" width="16" height="16">
+                        <use xlink:href="#twitter" /></svg>
+                    Sign in with Twitter
+                </button>
+                <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-4 flex flex-col items-center" type="submit">
+                    <svg class="bi me-1" width="16" height="16">
+                        <use xlink:href="#facebook" /></svg>
+                    Sign in with Facebook
+                </button>
+                <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-4 flex flex-col items-center" type="submit">
+                    <svg class="bi me-1" width="16" height="16">
+                        <use xlink:href="#github" /></svg>
+                    Sign in with GitHub
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 로그인 끝 -->
+<!-- 회원가입 모달창 시작 -->
+<div class="modal modal-signin bg-transparent py-5" role="dialog" id="myModal_signup">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-5 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0 flex flex-col">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
+                    <p class="font-bold text-[30px]">UMM...🤔</p>
+                    <p>가입해보는 거 어때요?</p>
+            </div>
+            <div class="modal-body p-5 pt-0">
+                <form method="POST">
+                    {% csrf_token %}
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-4" id="floatingInput"
+                        <input type="email" class="form-control rounded-4" id="email"
                             placeholder="name@example.com">
-                        <label for="floatingInput">Email address</label>
+                        <label for="floatingInput">이메일</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control rounded-4" id="floatingPassword"
-                            placeholder="Password">
-                        <label for="floatingPassword">Password</label>
+                        <input type="password" class="form-control rounded-4" id="password1"
+                            placeholder="비밀번호">
+                        <label for="floatingPassword">비밀번호</label>
                     </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-4" id="password2"
+                            placeholder="비밀번호 확인">
+                        <label for="floatingPassword">비밀번호 확인</label>
+                    </div>
+                    <div class = "error-message">{{ error }}</div>
                     <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign up</button>
-                    <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                    <small class="mt-2 text-xs flex justify-center text-center">회원가입을 하시면,<br> UMM의 이용약관에 동의하는 것으로 간주합니다 :) </small>
                     <hr class="my-4">
                     <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
                     <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4 flex flex-col items-center" type="submit">
@@ -95,7 +171,8 @@
                         로그아웃
                     </div>
                     {% else %}
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#myModal" data-backdrop="false">로그인</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#myModal_signin" data-backdrop="false">로그인</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#myModal_signup" data-backdrop="false">회원가입</button>
                     {% endif %}
                 </div>
             </div>

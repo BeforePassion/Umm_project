@@ -21,6 +21,8 @@ from django.http import JsonResponse
 def startpage(request):
     if request.method == 'GET':
         return render(request, 'main.html')
+    elif request.method== 'POST':
+        return redirect('/')
 
 def sign_up_view(request):
     if request.method == 'GET':
@@ -109,7 +111,7 @@ def sign_in_view(request):
 
 @login_required
 def logout(request):
-    auth.logout(request)  # 인증되어있는 정보를 없애기
+    auth.logout(request)
     return redirect("/sign-in")
 
 class VerificationView(View):
