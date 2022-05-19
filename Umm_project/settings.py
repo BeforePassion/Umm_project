@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
-from .our_settings import(
+from .secret_settings import(
     MY_DATABASE, Django_Secret_Key
 )
 
