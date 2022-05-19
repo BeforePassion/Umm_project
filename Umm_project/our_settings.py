@@ -12,4 +12,6 @@ MY_DATABASE = {
     }
 }
 
-    
+Django_Secret_Key = {
+    'django-insecure-2f4q)faq*4%*wtd5rz)dtd8^pou_)x25%b3r0t(x*w!m!_r&2b'
+}

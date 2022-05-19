@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 from .our_settings import(
-    MY_DATABASE,
+    MY_DATABASE, Django_Secret_Key
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q*6ynx9005%x8c#&vji1(u0zisnvqua+&j%_sc$l+818b*dsw!'
+SECRET_KEY = Django_Secret_Key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
